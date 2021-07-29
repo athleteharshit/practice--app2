@@ -9,6 +9,7 @@ import {
   InputBase,
   IconButton,
 } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 // * * * * * * * * * * icons * *
 import SearchIcon from "@material-ui/icons/Search";
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Companies() {
   const classes = useStyles();
+  const history = useHistory();
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSubmit = (e: any) => {
@@ -75,6 +77,9 @@ function Companies() {
               className={classes.loginBtn}
               color="primary"
               variant="contained"
+              onClick={() => {
+                history.push("/companies/addCompanies?type=add");
+              }}
             >
               Add Company
             </Button>

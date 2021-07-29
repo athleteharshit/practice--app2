@@ -3,7 +3,6 @@ import {
   createStyles,
   Theme,
   Typography,
-  TextField,
   Button,
   FormControl,
   FormHelperText,
@@ -12,6 +11,9 @@ import {
 import { Formik, Form } from "formik";
 import { AddCatogoryModal } from "../../modal";
 import schema from "../../schema";
+
+// ********** components ********
+import MainTextField from "../../components/mainTextField";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -92,7 +94,7 @@ function AddCatogory({ handleClose }: any) {
             // console.log(values, errors);
             return (
               <Form>
-                <TextField
+                <MainTextField
                   label="Company name *"
                   placeholder="Enter company name"
                   id="companyName"

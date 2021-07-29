@@ -11,7 +11,7 @@ import {
   CardActionArea,
   CardMedia,
 } from "@material-ui/core";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 // ********** icons * *
 
@@ -54,6 +54,9 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(1, 0.5),
       minHeight: "calc(100vh - 80px)",
     },
+    gridContainer: {
+      padding: theme.spacing(1),
+    },
     gridItemDetails: {
       paddingRight: theme.spacing(2),
     },
@@ -71,9 +74,6 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "var(--blue-grey)",
       marginTop: theme.spacing(0.5),
     },
-    gridContainer: {
-      padding: theme.spacing(1),
-    },
     card: {
       width: 350,
     },
@@ -85,6 +85,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function CompanyDetails() {
   const classes = useStyles();
+  const history = useHistory();
   // const params = useParams();
 
   return (
@@ -107,6 +108,9 @@ function CompanyDetails() {
             className={classes.loginBtn}
             color="primary"
             variant="contained"
+            onClick={() => {
+              history.push("/companies/addCompanies?type=edit");
+            }}
           >
             Edit
           </Button>

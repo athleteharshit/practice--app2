@@ -24,6 +24,17 @@ class CompaniesList {
   companiesList: any = [];
 }
 
+class AddCompaniesModal {
+  selectCategory: any = "";
+  companyName: string = "";
+  location: string = "";
+  amount: string = "";
+  openingHour: any = "";
+  contact: string = "";
+  description: string = "";
+  companyImg: string = "";
+}
+
 class ReducerModal {
   globalLoaderReducer: LoadingModal = new LoadingModal();
   signInModalReducer: SignInModal = new SignInModal();
@@ -40,4 +51,5 @@ export {
   CategoriesList,
   AddCatogoryModal,
   CompaniesList,
+  AddCompaniesModal,
 };
