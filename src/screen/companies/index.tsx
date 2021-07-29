@@ -13,6 +13,8 @@ import {
 // * * * * * * * * * * icons * *
 import SearchIcon from "@material-ui/icons/Search";
 import CompaniesTable from "./companiesTable";
+import MainModal from "../../components/mainModal";
+import AddCompanies from "./addCompanies";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,8 +44,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Companies() {
   const classes = useStyles();
-
   const [searchTerm, setSearchTerm] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -52,36 +58,42 @@ function Companies() {
   };
 
   return (
-    <div className={classes.companiesRoot}>
-      <Paper className={classes.headerPaper}>
-        <div>
-          <Typography className={classes.heading}>Companies</Typography>
-        </div>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <InputBase
-              placeholder="Search company"
-              inputProps={{ "aria-label": "search users" }}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <IconButton type="submit" aria-label="search">
-              <SearchIcon />
-            </IconButton>
-          </form>
-        </div>
-        <div>
-          <Button
-            className={classes.loginBtn}
-            color="primary"
-            variant="contained"
-          >
-            Add Company
-          </Button>
-        </div>
-      </Paper>
-      <CompaniesTable />
-    </div>
+    <>
+      <div className={classes.companiesRoot}>
+        <Paper className={classes.headerPaper}>
+          <div>
+            <Typography className={classes.heading}>Companies</Typography>
+          </div>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <InputBase
+                placeholder="Search company"
+                inputProps={{ "aria-label": "search users" }}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <IconButton type="submit" aria-label="search">
+                <SearchIcon />
+              </IconButton>
+            </form>
+          </div>
+          <div>
+            <Button
+              className={classes.loginBtn}
+              color="primary"
+              variant="contained"
+              onClick={() => setOpenModal(true)}
+            >
+              Add Company
+            </Button>
+          </div>
+        </Paper>
+        <CompaniesTable />
+      </div>
+      <MainModal open={openModal} handleClose={handleClose}>
+        <AddCompanies />
+      </MainModal>
+    </>
   );
 }
 
