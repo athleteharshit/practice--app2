@@ -1,0 +1,8 @@
+const actionName = {
+  LOADING: "LOADING",
+  GET_USERS_LIST: "GET_USERS_LIST",
+  GET_CATEGORY_LIST: "GET_CATEGORY_LIST",
+  GET_COMPANY_LIST: "GET_COMPANY_LIST",
+};
+
+export default actionName;
