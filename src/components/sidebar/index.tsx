@@ -18,6 +18,7 @@ import LocationCityIcon from "@material-ui/icons/LocationCity";
 import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 import ChatIcon from "@material-ui/icons/Chat";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -76,6 +77,12 @@ const useStyles = makeStyles((theme: Theme) =>
         1.8
       )}px Roboto, sans-serif `,
     },
+    activeStyle: {
+      "& .MuiListItem-root ": {
+        backgroundColor: theme.palette.primary.main,
+        color: "var(--white)",
+      },
+    },
   })
 );
 
@@ -101,7 +108,7 @@ function Sidebar() {
         </NavLink>
         <div className={classes.listDiv}>
           <List component="nav">
-            <NavLink to="/users">
+            <NavLink to="/users" activeClassName={classes.activeStyle}>
               <ListItem button className={classes.listItem}>
                 <ListItemIcon className={classes.listItemIcon}>
                   <PersonIcon className={classes.listIcon} />
@@ -113,7 +120,7 @@ function Sidebar() {
                 </ListItemText>
               </ListItem>
             </NavLink>
-            <NavLink to="/categories">
+            <NavLink to="/categories" activeClassName={classes.activeStyle}>
               <ListItem button className={classes.listItem}>
                 <ListItemIcon className={classes.listItemIcon}>
                   <CategoryIcon className={classes.listIcon} />
@@ -125,7 +132,7 @@ function Sidebar() {
                 </ListItemText>
               </ListItem>
             </NavLink>
-            <NavLink to="/companies">
+            <NavLink to="/companies" activeClassName={classes.activeStyle}>
               <ListItem button className={classes.listItem}>
                 <ListItemIcon className={classes.listItemIcon}>
                   <LocationCityIcon className={classes.listIcon} />
@@ -137,7 +144,7 @@ function Sidebar() {
                 </ListItemText>
               </ListItem>
             </NavLink>
-            <NavLink to="/loanRequest">
+            <NavLink to="/loanRequest" activeClassName={classes.activeStyle}>
               <ListItem button className={classes.listItem}>
                 <ListItemIcon className={classes.listItemIcon}>
                   <LocalAtmIcon className={classes.listIcon} />
@@ -149,19 +156,19 @@ function Sidebar() {
                 </ListItemText>
               </ListItem>
             </NavLink>
-            <NavLink to="/chat">
+            <NavLink to="/chatSupport" activeClassName={classes.activeStyle}>
               <ListItem button className={classes.listItem}>
                 <ListItemIcon className={classes.listItemIcon}>
                   <ChatIcon className={classes.listIcon} />
                 </ListItemIcon>
                 <ListItemText>
                   <Typography variant="body1" className={classes.listText}>
-                    Chat
+                    Chat Support
                   </Typography>
                 </ListItemText>
               </ListItem>
             </NavLink>
-            <NavLink to="/notification">
+            <NavLink to="/notification" activeClassName={classes.activeStyle}>
               <ListItem button className={classes.listItem}>
                 <ListItemIcon className={classes.listItemIcon}>
                   <NotificationsActiveIcon className={classes.listIcon} />
@@ -169,6 +176,18 @@ function Sidebar() {
                 <ListItemText>
                   <Typography variant="body1" className={classes.listText}>
                     Notification
+                  </Typography>
+                </ListItemText>
+              </ListItem>
+            </NavLink>
+            <NavLink to="/logout" activeClassName={classes.activeStyle}>
+              <ListItem button className={classes.listItem}>
+                <ListItemIcon className={classes.listItemIcon}>
+                  <ExitToAppIcon className={classes.listIcon} />
+                </ListItemIcon>
+                <ListItemText>
+                  <Typography variant="body1" className={classes.listText}>
+                    Logout
                   </Typography>
                 </ListItemText>
               </ListItem>

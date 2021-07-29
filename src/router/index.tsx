@@ -11,6 +11,7 @@ const Users = lazy(() => import("../screen/users"));
 const Categories = lazy(() => import("../screen/categories"));
 const Companies = lazy(() => import("../screen/companies"));
 const LoanRequest = lazy(() => import("../screen/loanRequest"));
+const CompanyDetails = lazy(() => import("../screen/companyDetails"));
 
 function Router() {
   return (
@@ -43,10 +44,15 @@ function Router() {
               );
             }}
           />
-          <PrivateRoute path="/users" component={Users} />
-          <PrivateRoute path="/categories" component={Categories} />
-          <PrivateRoute path="/companies" component={Companies} />
-          <PrivateRoute path="/loanRequest" component={LoanRequest} />
+          <PrivateRoute exact path="/users" component={Users} />
+          <PrivateRoute exact path="/categories" component={Categories} />
+          <PrivateRoute exact path="/companies" component={Companies} />
+          <PrivateRoute exact path="/loanRequest" component={LoanRequest} />
+          <PrivateRoute
+            exact
+            path="/companies/companyDetails/:id"
+            component={CompanyDetails}
+          />
         </Switch>
       </BrowserRouter>
     </ThemeProvider>

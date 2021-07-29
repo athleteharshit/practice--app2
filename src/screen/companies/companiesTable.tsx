@@ -17,6 +17,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCompaniesList } from "./action";
 import { ReducerModal } from "../../modal";
+import { useHistory } from "react-router-dom";
 
 // ********** components ********
 import MainModal from "../../components/mainModal";
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     tableBody: {
+      cursor: "pointer",
       "& td": {
         padding: theme.spacing(1),
         font: `normal normal ${theme.spacing(1.6)}px Roboto, sans-serif`,
@@ -104,6 +106,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function CompaniesTable() {
   const classes = useStyles();
+  const history = useHistory();
   const [openModal, setOpenModal] = useState(false);
   const [page, setPage] = useState(0);
   const [rowPerPage, setRowPerPage] = useState(9);
@@ -120,7 +123,11 @@ function CompaniesTable() {
     setOpenModal(false);
   };
 
-  const handleDeleteBtn = (id: number) => {
+  const handleDeleteBtn = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: number
+  ) => {
+    e.stopPropagation();
     setOpenModal(true);
   };
 
@@ -153,7 +160,13 @@ function CompaniesTable() {
                 companiesList
                   .slice(page * rowPerPage, page * rowPerPage + rowPerPage)
                   .map((user: any) => (
-                    <TableRow key={user.id} hover>
+                    <TableRow
+                      key={user.id}
+                      hover
+                      onClick={() => {
+                        history.push(`/companies/companyDetails/${user.id}`);
+                      }}
+                    >
                       <TableCell>{user.company_name}</TableCell>
                       <TableCell>{user.company_contact}</TableCell>
                       <TableCell>{user.amount}</TableCell>
@@ -161,7 +174,7 @@ function CompaniesTable() {
                         <Button
                           className={classes.deletBtn}
                           variant="contained"
-                          onClick={() => handleDeleteBtn(user.id)}
+                          onClick={(e) => handleDeleteBtn(e, user.id)}
                         >
                           Delete
                         </Button>

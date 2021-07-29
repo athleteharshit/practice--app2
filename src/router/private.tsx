@@ -8,6 +8,7 @@ import Container from "../components/container";
 interface Props {
   path: string;
   component: any;
+  exact?: boolean;
 }
 
 const PrivateRoute = ({ component: Component, ...rest }: Props) => {

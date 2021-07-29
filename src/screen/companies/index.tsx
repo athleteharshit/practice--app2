@@ -13,8 +13,6 @@ import {
 // * * * * * * * * * * icons * *
 import SearchIcon from "@material-ui/icons/Search";
 import CompaniesTable from "./companiesTable";
-import MainModal from "../../components/mainModal";
-import AddCompanies from "./addCompanies";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -45,11 +43,6 @@ const useStyles = makeStyles((theme: Theme) =>
 function Companies() {
   const classes = useStyles();
   const [searchTerm, setSearchTerm] = useState("");
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleClose = () => {
-    setOpenModal(false);
-  };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -82,7 +75,6 @@ function Companies() {
               className={classes.loginBtn}
               color="primary"
               variant="contained"
-              onClick={() => setOpenModal(true)}
             >
               Add Company
             </Button>
@@ -90,9 +82,6 @@ function Companies() {
         </Paper>
         <CompaniesTable />
       </div>
-      <MainModal open={openModal} handleClose={handleClose}>
-        <AddCompanies />
-      </MainModal>
     </>
   );
 }
