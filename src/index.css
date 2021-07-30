@@ -36,6 +36,9 @@ body a {
   --background-color-right: "#f5f5f5";
   --background-grey: #f7f7fb;
   --status-grey: #545454;
+  --denim-blue: #b2b4b7;
+  --chat-reply: #dcf8c6;
+  --user-chat-background-color: #e5ddd5;
 
   --blue-grey: #637696;
   --light-blue: #3c5a9a;
@@ -47,5 +50,4 @@ body a {
   --dark-grey-blue: #3a4e6f;
   --dark-lime-green: #86c306;
   --frog-green: #7bb502;
-  --denim-blue: #b2b4b7;
 }

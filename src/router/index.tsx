@@ -15,6 +15,7 @@ const CompanyDetails = lazy(() => import("../screen/companyDetails"));
 const AddCompanies = lazy(() => import("../screen/addCompanies"));
 const ChatSupport = lazy(() => import("../screen/chatSupport"));
 const Notification = lazy(() => import("../screen/notification"));
+const ChatUser = lazy(() => import("../screen/chatUser"));
 
 function Router() {
   return (
@@ -62,6 +63,11 @@ function Router() {
             component={AddCompanies}
           />
           <PrivateRoute exact path="/chatSupport" component={ChatSupport} />
+          <PrivateRoute
+            exact
+            path="/chatSupport/chatUser/:id"
+            component={ChatUser}
+          />
           <PrivateRoute exact path="/notification" component={Notification} />
         </Switch>
       </BrowserRouter>
