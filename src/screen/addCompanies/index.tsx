@@ -49,11 +49,11 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "var(--blue-grey)",
     },
     hover: {
+      color: "var(--denim-blue)",
       "&:hover": {
         color: theme.palette.primary.main,
       },
     },
-
     addCompaniesDiv: {
       backgroundColor: "var(--white)",
       margin: theme.spacing(1, 0.5),
@@ -132,7 +132,9 @@ function AddCompanies() {
                 Companies
               </Typography>
             </NavLink>
-            <Typography className={classes.heading}>Company Detail</Typography>
+            <Typography className={classes.heading}>
+              {type === "edit" ? "Edit Company" : "Add Company"}
+            </Typography>
           </Breadcrumbs>
         </div>
       </Paper>

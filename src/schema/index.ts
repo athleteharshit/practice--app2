@@ -68,10 +68,23 @@ const addCompaniesSchema = () =>
     companyImg: Yup.mixed().required("A file is required"),
   });
 
+const notificationSchema = () =>
+  Yup.object().shape({
+    title: Yup.string()
+      .trim()
+      .min(3, "Must be greater then 3 characters")
+      .required("Title is required"),
+    message: Yup.string()
+      .trim()
+      .min(3, "Must be greater then 3 characters")
+      .required("Message is required"),
+  });
+
 const schema = {
   loginSchema,
   addCategoryScheme,
   addCompaniesSchema,
+  notificationSchema,
 };
 
 export default schema;

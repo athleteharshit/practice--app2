@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
     categoriesListRoot: {
       margin: theme.spacing(1, 0.5),
       backgroundColor: "var(--white)",
+      minHeight: "calc(100vh - 80px)",
     },
     gridDiv: {
       padding: theme.spacing(0.5),

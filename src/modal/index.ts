@@ -35,6 +35,11 @@ class AddCompaniesModal {
   companyImg: string = "";
 }
 
+class NotificationModal {
+  title: string = "";
+  message: string = "";
+}
+
 class ReducerModal {
   globalLoaderReducer: LoadingModal = new LoadingModal();
   signInModalReducer: SignInModal = new SignInModal();
@@ -52,4 +57,5 @@ export {
   AddCatogoryModal,
   CompaniesList,
   AddCompaniesModal,
+  NotificationModal,
 };

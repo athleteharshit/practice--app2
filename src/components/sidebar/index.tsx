@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   makeStyles,
   createStyles,
@@ -10,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 
-// ******************************* icons *******************************
+// ******************************* icons and components *******************************
 import AppleIcon from "@material-ui/icons/Apple";
 import PersonIcon from "@material-ui/icons/Person";
 import CategoryIcon from "@material-ui/icons/Category";
@@ -19,6 +20,8 @@ import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 import ChatIcon from "@material-ui/icons/Chat";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import MainModal from "../mainModal";
+import Logout from "../../screen/logout";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -88,100 +91,112 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Sidebar() {
   const classes = useStyles();
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
+
   return (
-    <div className={classes.sidebarRoot}>
-      <div>
-        <NavLink to="/users">
-          <div className={classes.logoAndCompany}>
-            <div className={classes.imgDiv}>
-              {/* <img
+    <>
+      <div className={classes.sidebarRoot}>
+        <div>
+          <NavLink to="/users">
+            <div className={classes.logoAndCompany}>
+              <div className={classes.imgDiv}>
+                {/* <img
             className={classes.img}
             src={localImages.LOGO}
             alt="company logo"
           /> */}
-              <AppleIcon className={classes.img} />
+                <AppleIcon className={classes.img} />
+              </div>
+              <Typography className={classes.companyHeading} variant="h5">
+                Company
+              </Typography>
             </div>
-            <Typography className={classes.companyHeading} variant="h5">
-              Company
-            </Typography>
-          </div>
-        </NavLink>
-        <div className={classes.listDiv}>
-          <List component="nav">
-            <NavLink to="/users" activeClassName={classes.activeStyle}>
-              <ListItem button className={classes.listItem}>
-                <ListItemIcon className={classes.listItemIcon}>
-                  <PersonIcon className={classes.listIcon} />
-                </ListItemIcon>
-                <ListItemText>
-                  <Typography variant="body1" className={classes.listText}>
-                    Users
-                  </Typography>
-                </ListItemText>
-              </ListItem>
-            </NavLink>
-            <NavLink to="/categories" activeClassName={classes.activeStyle}>
-              <ListItem button className={classes.listItem}>
-                <ListItemIcon className={classes.listItemIcon}>
-                  <CategoryIcon className={classes.listIcon} />
-                </ListItemIcon>
-                <ListItemText>
-                  <Typography variant="body1" className={classes.listText}>
-                    Categories
-                  </Typography>
-                </ListItemText>
-              </ListItem>
-            </NavLink>
-            <NavLink to="/companies" activeClassName={classes.activeStyle}>
-              <ListItem button className={classes.listItem}>
-                <ListItemIcon className={classes.listItemIcon}>
-                  <LocationCityIcon className={classes.listIcon} />
-                </ListItemIcon>
-                <ListItemText>
-                  <Typography variant="body1" className={classes.listText}>
-                    Companies
-                  </Typography>
-                </ListItemText>
-              </ListItem>
-            </NavLink>
-            <NavLink to="/loanRequest" activeClassName={classes.activeStyle}>
-              <ListItem button className={classes.listItem}>
-                <ListItemIcon className={classes.listItemIcon}>
-                  <LocalAtmIcon className={classes.listIcon} />
-                </ListItemIcon>
-                <ListItemText>
-                  <Typography variant="body1" className={classes.listText}>
-                    Loan Request
-                  </Typography>
-                </ListItemText>
-              </ListItem>
-            </NavLink>
-            <NavLink to="/chatSupport" activeClassName={classes.activeStyle}>
-              <ListItem button className={classes.listItem}>
-                <ListItemIcon className={classes.listItemIcon}>
-                  <ChatIcon className={classes.listIcon} />
-                </ListItemIcon>
-                <ListItemText>
-                  <Typography variant="body1" className={classes.listText}>
-                    Chat Support
-                  </Typography>
-                </ListItemText>
-              </ListItem>
-            </NavLink>
-            <NavLink to="/notification" activeClassName={classes.activeStyle}>
-              <ListItem button className={classes.listItem}>
-                <ListItemIcon className={classes.listItemIcon}>
-                  <NotificationsActiveIcon className={classes.listIcon} />
-                </ListItemIcon>
-                <ListItemText>
-                  <Typography variant="body1" className={classes.listText}>
-                    Notification
-                  </Typography>
-                </ListItemText>
-              </ListItem>
-            </NavLink>
-            <NavLink to="/logout" activeClassName={classes.activeStyle}>
-              <ListItem button className={classes.listItem}>
+          </NavLink>
+          <div className={classes.listDiv}>
+            <List component="nav">
+              <NavLink to="/users" activeClassName={classes.activeStyle}>
+                <ListItem button className={classes.listItem}>
+                  <ListItemIcon className={classes.listItemIcon}>
+                    <PersonIcon className={classes.listIcon} />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body1" className={classes.listText}>
+                      Users
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              </NavLink>
+              <NavLink to="/categories" activeClassName={classes.activeStyle}>
+                <ListItem button className={classes.listItem}>
+                  <ListItemIcon className={classes.listItemIcon}>
+                    <CategoryIcon className={classes.listIcon} />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body1" className={classes.listText}>
+                      Categories
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              </NavLink>
+              <NavLink to="/companies" activeClassName={classes.activeStyle}>
+                <ListItem button className={classes.listItem}>
+                  <ListItemIcon className={classes.listItemIcon}>
+                    <LocationCityIcon className={classes.listIcon} />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body1" className={classes.listText}>
+                      Companies
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              </NavLink>
+              <NavLink to="/loanRequest" activeClassName={classes.activeStyle}>
+                <ListItem button className={classes.listItem}>
+                  <ListItemIcon className={classes.listItemIcon}>
+                    <LocalAtmIcon className={classes.listIcon} />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body1" className={classes.listText}>
+                      Loan Request
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              </NavLink>
+              <NavLink to="/chatSupport" activeClassName={classes.activeStyle}>
+                <ListItem button className={classes.listItem}>
+                  <ListItemIcon className={classes.listItemIcon}>
+                    <ChatIcon className={classes.listIcon} />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body1" className={classes.listText}>
+                      Chat Support
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              </NavLink>
+              <NavLink to="/notification" activeClassName={classes.activeStyle}>
+                <ListItem button className={classes.listItem}>
+                  <ListItemIcon className={classes.listItemIcon}>
+                    <NotificationsActiveIcon className={classes.listIcon} />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body1" className={classes.listText}>
+                      Notification
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              </NavLink>
+              <ListItem
+                button
+                className={classes.listItem}
+                onClick={() => {
+                  setOpenModal(true);
+                }}
+              >
                 <ListItemIcon className={classes.listItemIcon}>
                   <ExitToAppIcon className={classes.listIcon} />
                 </ListItemIcon>
@@ -191,11 +206,14 @@ function Sidebar() {
                   </Typography>
                 </ListItemText>
               </ListItem>
-            </NavLink>
-          </List>
+            </List>
+          </div>
         </div>
       </div>
-    </div>
+      <MainModal open={openModal} handleClose={handleClose}>
+        <Logout handleClose={handleClose} />
+      </MainModal>
+    </>
   );
 }
 

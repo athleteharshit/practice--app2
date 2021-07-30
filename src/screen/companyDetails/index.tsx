@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "var(--blue-grey)",
     },
     hover: {
+      color: "var(--denim-blue)",
       "&:hover": {
         color: theme.palette.primary.main,
       },

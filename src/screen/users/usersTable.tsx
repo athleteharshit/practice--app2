@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
     usersTableRoot: {
       margin: theme.spacing(1, 0.5),
       backgroundColor: "var(--white)",
+      minHeight: "calc(100vh - 80px)",
     },
     tabelContainer: {
       padding: theme.spacing(0.5),
