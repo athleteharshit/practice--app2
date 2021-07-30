@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   makeStyles,
   createStyles,
@@ -6,11 +6,14 @@ import {
   Paper,
   Typography,
   Breadcrumbs,
+  Input,
+  IconButton,
 } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
-import { MessageBox } from "react-chat-elements";
+import { MessageBox, ChatItem } from "react-chat-elements";
 
-import localImages from "../../utils/images";
+// ********** icons and components ********
+import SendIcon from "@material-ui/icons/Send";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,17 +46,42 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: "calc(100vh - 80px)",
     },
     paddingDiv: {
-      padding: theme.spacing(0.1),
+      padding: theme.spacing(1),
+      position: "relative",
     },
-    backgroundImg: {
-      backgroundColor: "var(--user-chat-background-color)",
-      background: `url(${localImages.USER_CHAT_IMG}) center center repeat`,
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      opacity: 0.06,
+    chatsDiv: {
+      // backgroundColor: "#ededed"
+    },
+    chatItem: {
+      "& .rce-citem ": {
+        backgroundColor: "var(--chat-background-color)",
+        cursor: "default",
+        "&:hover": {
+          backgroundColor: "var(--chat-background-color)",
+        },
+      },
+    },
+    messagesBox: {
+      backgroundColor: "var(--dim-blue)",
+      padding: theme.spacing(1),
+      height: "70vh",
+      overflowY: "scroll",
+    },
+    sendBtnDiv: {
+      backgroundColor: "var(--chat-background-color)",
+      padding: theme.spacing(1),
+    },
+    form: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    sendMessageInput: {
+      backgroundColor: "var(--white)",
+      padding: theme.spacing(0.5, 2),
+      width: "90%",
+      borderRadius: theme.spacing(5),
+      marginRight: theme.spacing(1),
     },
   })
 );
@@ -108,8 +136,9 @@ const chatUser = [
   ),
 ];
 
-function ChatSupport() {
+function ChatUser() {
   const classes = useStyles();
+  const [sendMessage, setSendMessage] = useState("");
 
   return (
     <div className={classes.chatSupportRoot}>
@@ -125,41 +154,64 @@ function ChatSupport() {
       </Paper>
       <div className={classes.marginDiv}>
         <div className={classes.paddingDiv}>
-          <div className={classes.backgroundImg}> </div>
-          <MessageBox
-            position={"left"}
-            type={"text"}
-            text={"What are you doing?"}
-            // data={{
-            //   uri: "https://facebook.github.io/react/img/logo.svg",
-            //   status: {
-            //     click: false,
-            //     loading: 0,
-            //   },
-            // }}
-            // title="harshit"
-            dateString={"1:35 PM"}
-          />
-          <MessageBox
-            position={"right"}
-            type={"text"}
-            text={"playing cricket and u?"}
-            // data={{
-            //   uri: "https://facebook.github.io/react/img/logo.svg",
-            //   status: {
-            //     click: false,
-            //     loading: 0,
-            //   },
-            // }}
-            // title="harshit"
-            dateString={"1:35 PM"}
-            status={"read"}
-            notch={false}
-          />
+          <div className={classes.chatsDiv}>
+            <div className={classes.chatItem}>
+              <ChatItem
+                key={1}
+                avatar={"https://img.icons8.com/clouds/2x/user.png"}
+                alt={"Reactjs"}
+                title={"Harshit gupta"}
+                subtitle={"online"}
+              />
+            </div>
+            <div className={classes.messagesBox}>
+              {new Array(20).fill(20).map((item, index) => (
+                <Fragment key={index}>
+                  <MessageBox
+                    id={"1"}
+                    position={"left"}
+                    type={"text"}
+                    text={"hello whats up bro!"}
+                    dateString={"2:34 PM"}
+                  />
+                  <MessageBox
+                    id={"2"}
+                    position={"right"}
+                    type={"text"}
+                    text={"fine bro!"}
+                    dateString={"2:34 PM"}
+                    status={"read"}
+                  />
+                </Fragment>
+              ))}
+            </div>
+            <div className={classes.sendBtnDiv}>
+              <form
+                className={classes.form}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  console.log("call", sendMessage);
+                }}
+              >
+                <Input
+                  className={classes.sendMessageInput}
+                  id="sendMessage"
+                  type="textarea"
+                  value={sendMessage}
+                  placeholder="Type a message"
+                  disableUnderline
+                  onChange={(e) => setSendMessage(e.target.value)}
+                />
+                <IconButton type="submit">
+                  <SendIcon />
+                </IconButton>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default ChatSupport;
+export default ChatUser;

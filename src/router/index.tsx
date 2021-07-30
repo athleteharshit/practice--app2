@@ -69,6 +69,11 @@ function Router() {
             component={ChatUser}
           />
           <PrivateRoute exact path="/notification" component={Notification} />
+          <PrivateRoute
+            exact
+            path="/chatSupport/chatUser/:id"
+            component={ChatUser}
+          />
         </Switch>
       </BrowserRouter>
     </ThemeProvider>
