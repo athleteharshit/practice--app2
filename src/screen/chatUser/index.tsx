@@ -1,3 +1,4 @@
+import { Fragment, useState } from "react";
 import {
   makeStyles,
   createStyles,
@@ -5,9 +6,12 @@ import {
   Paper,
   Typography,
   Breadcrumbs,
+  Input,
+  IconButton,
 } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import { MessageBox, ChatItem } from "react-chat-elements";
+import SendIcon from "@material-ui/icons/Send";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -64,11 +68,19 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: "var(--chat-background-color)",
       padding: theme.spacing(1),
     },
+    sendMessageInput: {
+      backgroundColor: "var(--white)",
+      padding: theme.spacing(0.5, 2),
+      width: "90%",
+      borderRadius: theme.spacing(5),
+    },
   })
 );
 
 function ChatUser() {
   const classes = useStyles();
+  const [sendMessage, setSendMessage] = useState("");
+
   return (
     <div className={classes.chatSupportRoot}>
       <Paper className={classes.headerPaper}>
@@ -95,7 +107,7 @@ function ChatUser() {
             </div>
             <div className={classes.messagesBox}>
               {new Array(20).fill(20).map((item, index) => (
-                <>
+                <Fragment key={index}>
                   <MessageBox
                     id={"1"}
                     position={"left"}
@@ -111,10 +123,30 @@ function ChatUser() {
                     dateString={"2:34 PM"}
                     status={"read"}
                   />
-                </>
+                </Fragment>
               ))}
             </div>
-            <div className={classes.sendBtnDiv}>send div</div>
+            <div className={classes.sendBtnDiv}>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  console.log("call", sendMessage);
+                }}
+              >
+                <Input
+                  className={classes.sendMessageInput}
+                  id="sendMessage"
+                  type="textarea"
+                  value={sendMessage}
+                  placeholder="Type a message"
+                  disableUnderline
+                  onChange={(e) => setSendMessage(e.target.value)}
+                />
+                <IconButton type="submit">
+                  <SendIcon />
+                </IconButton>
+              </form>
+            </div>
           </div>
         </div>
       </div>
