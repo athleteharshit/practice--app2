@@ -85,6 +85,9 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: theme.palette.primary.main,
         color: "var(--white)",
       },
+      "& .MuiListItemIcon-root": {
+        color: "var(--white)",
+      },
     },
   })
 );
