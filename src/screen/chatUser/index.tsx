@@ -196,7 +196,7 @@ function ChatUser() {
                 <Input
                   className={classes.sendMessageInput}
                   id="sendMessage"
-                  type="textarea"
+                  // type="textarea"
                   value={sendMessage}
                   placeholder="Type a message"
                   disableUnderline

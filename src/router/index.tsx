@@ -16,6 +16,7 @@ const AddCompanies = lazy(() => import("../screen/addCompanies"));
 const ChatSupport = lazy(() => import("../screen/chatSupport"));
 const Notification = lazy(() => import("../screen/notification"));
 const ChatUser = lazy(() => import("../screen/chatUser"));
+const LoanRequestDetails = lazy(() => import("../screen/loanRequestDetails"));
 
 function Router() {
   return (
@@ -73,6 +74,11 @@ function Router() {
             exact
             path="/chatSupport/chatUser/:id"
             component={ChatUser}
+          />
+          <PrivateRoute
+            exact
+            path="/loanRequest/loanRequestDetails/:id"
+            component={LoanRequestDetails}
           />
         </Switch>
       </BrowserRouter>

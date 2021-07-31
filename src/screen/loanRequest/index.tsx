@@ -10,6 +10,7 @@ import {
   CardHeader,
   Avatar,
 } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -70,6 +71,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function LoanRequest() {
   const classes = useStyles();
+  const history = useHistory();
+
   return (
     <div className={classes.loanRequestRoot}>
       <Paper className={classes.headerPaper}>
@@ -79,7 +82,13 @@ function LoanRequest() {
         <div className={classes.paddingDiv}>
           <List aria-label="loan request">
             {new Array(4).fill(0).map((i, index) => (
-              <ListItem key={index} button>
+              <ListItem
+                key={index}
+                button
+                onClick={() => {
+                  history.push(`/loanRequest/loanRequestDetails/${index + 1}`);
+                }}
+              >
                 <Card className={classes.card}>
                   <CardHeader
                     className={classes.cardHeader}
