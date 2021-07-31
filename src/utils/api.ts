@@ -3,11 +3,10 @@ import Utils from ".";
 // post api
 const postApiCall = (
   endPoint: string,
-  params: object,
+  params: any,
   successCallback: Function,
   errorCallback: Function
 ) => {
-  // console.log({ endPoint, params, successCallback });
   Utils.constant.axios
     .post(endPoint, params)
     .then((response: any) => {

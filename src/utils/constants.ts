@@ -1,6 +1,8 @@
 import axios from "axios";
 import { getUserIdToken } from "./session";
 
+// const baseURL = "http://18.191.245.6:9001/api/v1/";
+
 /**
  * setup axios instance
  */
