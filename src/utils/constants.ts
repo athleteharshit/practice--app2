@@ -1,15 +1,38 @@
 import axios from "axios";
-import { getUserIdToken } from "./session";
+import {
+  getUserIdToken,
+  setAuthorizationToken,
+  removeSession,
+} from "./session";
 
-// const baseURL = "http://18.191.245.6:9001/api/v1/";
+// baseURL: `https://reqres.in/`,
+const baseURL = "http://18.191.245.6:9001/api/v1/";
+
+const username = "credtexpress";
+const password = "credtexpress@123";
+
+function authenticateUser(user: string, password: string) {
+  let token = user + ":" + password;
+  let hash = btoa(token);
+
+  return "Basic " + hash;
+}
 
 /**
  * setup axios instance
  */
+
 const $axios = axios.create({
   timeout: 100000,
-  baseURL: `https://reqres.in/`,
-  headers: { "Content-Type": "application/json" },
+  baseURL: baseURL,
+
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: authenticateUser(username, password),
+    platform: "1",
+    language: "en",
+  },
 });
 
 const localUseOfAxios = axios.create({
@@ -30,6 +53,11 @@ const apiSuccessCode = {
   postSuccess: 201,
   success: 200,
 };
+
+const messageCode = {
+  userType: "ADMIN",
+};
+
 const responseAlert = {
   INFORMATION_ALERT_WITHOUT_ACTION: 1,
   ALERT_WITH_ACTION: 2,
@@ -45,6 +73,9 @@ const constant = {
   apiSuccessCode,
   responseAlert,
   getUserIdToken,
+  setAuthorizationToken,
+  removeSession,
+  messageCode,
 };
 
 export default constant;

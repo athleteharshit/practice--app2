@@ -110,53 +110,6 @@ const useStyles = makeStyles((theme: Theme) =>
 function LoanRequestDetails() {
   const classes = useStyles();
 
-  // const requestOptions = {
-  //   method: "POST",
-  //   headers: {
-  //     Accept: "application/json",
-  //     "Content-Type": "application/json",
-  //     language: "en",
-  //     platform: "1",
-  //   },
-  //   body: JSON.stringify({
-  //     email: "creditexpress@yopmail.com",
-  //     password: "Admin",
-  //     deviceId: "string",
-  //     platform: "3",
-  //     // deviceToken: "string",
-  //   }),
-  // };
-
-  // // curl -X POST "http://18.191.245.6:9001/api/v1/admin/login" -H  "accept: application/json" -H  "platform: 3" -H  "language: en" -H  "Content-Type: application/json" -d "{  \"email\": \"creditexpress@yopmail.com\",  \"password\": \"Admin@123\",  \"deviceId\": \"string\",  \"platform\": \"3\",  \"deviceToken\": \"string\"}"
-
-  // const fetchDat = async () => {
-  //   const response = await fetch(
-  //     "http://18.191.245.6:9001/api/v1/admin/login",
-  //     requestOptions
-  //   );
-
-  //   const data = await response.json();
-  //   console.log(data);
-  // };
-
-  // const fetchAxios = async () => {
-  //   const response = await axios.post(
-  //     "http://18.191.245.6:9001/api/v1/admin/login",
-  //     {
-  //       email: "creditexpress@yopmail.com",
-  //       password: "Admin",
-  //       deviceId: "string",
-  //       platform: "3",
-  //       deviceToken: "string",
-  //     }
-  //   );
-
-  //   console.log(response, "response");
-  // };
-
-  // fetchAxios();
-  // fetchDat();
-
   const headingCard = (heading: string, subHeading: any) => {
     return (
       <div className={classes.headingAndCaptionDiv}>

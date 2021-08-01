@@ -1,5 +1,5 @@
 const endPoint = {
-  login: "/api/login",
+  login: "/admin/login",
 };
 
 export default endPoint;

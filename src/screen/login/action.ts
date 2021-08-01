@@ -2,23 +2,36 @@ import Utils from "../../utils";
 
 export const onSubmit = (values: any, setSubmitting: any, history: any) => {
   return (dispatch: Function) => {
+    if (!navigator.onLine) {
+      Utils.showAlert(2, "Please check your internet connection!");
+      setSubmitting(false);
+      return;
+    }
     const { email, password } = values;
     const params = {
-      email: "eve.holt@reqres.in",
+      email,
       password,
+      deviceId: "string",
+      platform: "3",
+      deviceToken: "string",
     };
+
     Utils.api.postApiCall(
       Utils.endPoint.login,
       params,
       (response: any) => {
-        let { data, status } = response;
-        if (status === Utils.constant.apiSuccessCode.success) {
-          Utils.showAlert(1, "Successfully login!");
+        const { data, statusCode, message } = response.data;
+        if (
+          statusCode === Utils.constant.apiSuccessCode.success &&
+          data.userType === Utils.constant.messageCode.userType
+        ) {
+          const { accessToken } = data;
+          Utils.showAlert(1, message);
           setSubmitting(false);
-          const { token } = data;
-          if (token && token.length > 0) {
-            localStorage.setItem("access_token", JSON.stringify(token));
+          if (accessToken && accessToken.length > 0) {
+            localStorage.setItem("accessToken", accessToken);
           }
+          Utils.constant.setAuthorizationToken(accessToken);
           history.push("/users");
         } else {
           setSubmitting(false);
