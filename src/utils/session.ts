@@ -19,6 +19,22 @@ export const setAuthorizationToken = (token?: string) => {
   }
 };
 
+export const getAccessToken = () => {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    setAuthorizationToken(accessToken);
+  }
+
+  return accessToken;
+};
+
+export const setAccessToken = (accessToken: any) => {
+  if (accessToken) {
+    setAuthorizationToken(accessToken);
+  }
+  return accessToken;
+};
+
 export const removeSession = () => {
   localStorage.clear();
   setAuthorizationToken("");

@@ -3,6 +3,8 @@ import {
   getUserIdToken,
   setAuthorizationToken,
   removeSession,
+  getAccessToken,
+  setAccessToken,
 } from "./session";
 
 // baseURL: `https://reqres.in/`,
@@ -76,6 +78,8 @@ const constant = {
   setAuthorizationToken,
   removeSession,
   messageCode,
+  getAccessToken,
+  setAccessToken,
 };
 
 export default constant;
